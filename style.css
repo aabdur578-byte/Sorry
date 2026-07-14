@@ -1,0 +1,156 @@
+/* style.css */
+
+/* ---- Reset & Overflow Guard ---- */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #fff0f3;
+  color: #6b2737;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ---- Screens ---- */
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+
+  /* smooth fade transition instead of abrupt display swap */
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.screen.fade-in {
+  opacity: 1;
+}
+
+.screen.fade-out {
+  opacity: 0;
+}
+
+/* ---- Typography ---- */
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff4d6d;
+  margin-bottom: 20px;
+}
+
+.letter {
+  max-width: 340px;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: #ffe5ec;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(255, 133, 161, 0.3);
+  margin-top: 10px;
+}
+
+/* ---- Cat Image ---- */
+.cat-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ff85a1;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(255, 133, 161, 0.4);
+}
+
+/* ---- Buttons ---- */
+.btn-row {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.btn-yes {
+  background: #ff85a1;
+  color: #fff;
+}
+
+.btn-yes:active {
+  transform: scale(0.95);
+}
+
+.btn-no {
+  background: #ffe5ec;
+  color: #ff4d6d;
+  border: 2px solid #ff85a1;
+  /* fixed positioning lets us teleport it freely within the viewport */
+  position: fixed;
+  z-index: 10;
+}
+
+/* ---- Floating Hearts ---- */
+.heart {
+  position: fixed;
+  bottom: -30px;
+  font-size: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  animation-name: floatUp;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  z-index: 5;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(20px, -50vh) rotate(10deg);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-20px, -100vh) rotate(-10deg);
+  }
+}
